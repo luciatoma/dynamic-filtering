@@ -1,0 +1,84 @@
+@import '../../../styles/constants.scss';
+
+:local(.cardWrapper) {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+:local(.header) {
+    color: $white;
+    display: flex;
+    flex-direction: row;
+    padding: 6px 0;
+
+    :local(.headerCol) {
+        margin-left: 10px;
+        width: 25%;
+    }
+
+    :local(.lastCol) {
+        display: flex;
+        margin-right: 10px;
+        width: 50%;
+
+        span:last-of-type {
+            margin-left: auto;
+        }
+    }
+}
+
+:local(.blueBorder) {
+    border: 1px solid $blue;
+}
+
+:local(.greenBorder) {
+    border: 1px solid $green;
+}
+
+:local(.redBorder) {
+    border: 1px solid $red;
+}
+
+:local(.blue) {
+    background: $blue;
+    border-bottom: 1px solid $blue;
+}
+
+:local(.green) {
+    background: $green;
+    border-bottom: 1px solid $green;
+}
+
+:local(.red) {
+    background: $red;
+    border-bottom: 1px solid $red;
+}
+
+:local(.details) {
+    display: flex;
+    flex-direction: row;
+    padding: 6px 0;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        width: 25%;
+
+        &:last-of-type {
+            margin-right: 10px;
+            width: 50%;
+        }
+    }
+
+    span {
+        color: $gray;
+    }
+
+    :local(.detailsSubtitle) {
+        color: $black;
+        font-weight: 700;
+    }
+}
