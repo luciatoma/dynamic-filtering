@@ -1,0 +1,10 @@
+:local(.btnFilterWrapper) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+:local(.btnFilter) {
+    margin: auto;
+}

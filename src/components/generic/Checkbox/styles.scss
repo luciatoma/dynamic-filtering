@@ -1,0 +1,57 @@
+@import '../../../styles//constants.scss';
+
+:local(.check) {
+    color: $white;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding-right: 70px;
+    position: relative;
+    user-select: none;
+
+    input {
+        cursor: pointer;
+        height: 0;
+        opacity: 0;
+        position: absolute;
+        width: 0;
+    }
+
+    &:hover {
+        input ~ :local(.checkmark) {
+            background-color: $white;
+        }
+    }
+}
+
+:local(.checkmark) {
+    background-color: transparent;
+    border: 1px solid $white;
+    border-radius: 4px;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    width: 16px;
+
+    &:after {
+        border: solid $white;
+        border-width: 0 2px 2px 0;
+        content: '';
+        display: none;
+        height: 10px;
+        left: 5px;
+        position: absolute;
+        top: 0px;
+        transform: rotate(45deg);
+        width: 4px;
+    }
+}
+
+:local(.check) input:checked ~ :local(.checkmark) {
+    background-color: $blue;
+
+    &:after {
+        display: block;
+    }
+}

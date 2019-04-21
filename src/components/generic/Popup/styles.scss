@@ -1,0 +1,53 @@
+@import '../../../styles/constants.scss';
+
+:local(.wrapper) {
+    background: $blue;
+    border: 1px solid $blue;
+    border-radius: 4px;
+    box-shadow: 1px 0px 15px -5px rgba(0, 0, 0, 0.75);
+    color: $white;
+    margin-top: 5px;
+    padding: 25px;
+    position: absolute;
+}
+
+:local(.filterTitle) {
+    font-weight: 600;
+}
+
+:local(.valuesWrapper) {
+    border-top: 1px solid $white;
+    margin: 10px 0 20px;
+    padding-top: 10px;
+}
+
+.flatpickr-input {
+    border: 1px solid $blue;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 4px 6px;
+    width: 100%;
+
+    &:hover {
+        border-color: $blue;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $blue;
+        box-shadow: 0 0 0 2px $blue;
+    }
+}
+
+.flatpickr-calendar {
+    box-shadow: 1px 0px 15px -5px rgba(0, 0, 0, 0.75);
+
+    .flatpickr-months .flatpickr-month,
+    .flatpickr-innerContainer .flatpickr-weekdays,
+    .flatpickr-innerContainer .flatpickr-weekday,
+    .flatpickr-day.selected {
+        background-color: $blue;
+        border-color: $blue;
+        color: $white;
+    }
+}
