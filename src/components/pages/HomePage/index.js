@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import isEqual from 'lodash/isEqual';
+import cloneDeep from 'lodash/cloneDeep';
 import { getWorkOrders, getAvailableFilters } from '../../../services/api';
 import FilterParser from '../../../utils/filterParser';
 
@@ -12,16 +14,25 @@ class HomePage extends Component {
         allWorkOrders: [],
         filters: {},
         popupVisibility: {},
+        filteredWorkOrders: [],
     };
 
-    filterParser = null;
+    filterParser = new FilterParser(getAvailableFilters());
 
     async componentDidMount() {
         this.mounted = true;
         const allWorkOrders = await getWorkOrders();
-        this.filterParser = new FilterParser(getAvailableFilters(), allWorkOrders);
 
         if (this.mounted) this.setState({ allWorkOrders });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { filters, allWorkOrders } = this.state;
+        if (!isEqual(filters, prevState.filters) || !isEqual(allWorkOrders, prevState.allWorkOrders)) {
+            const filteredWorkOrders = this.filterParser.getFilteredResults(filters, allWorkOrders);
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({ filteredWorkOrders });
+        }
     }
 
     componentWillUnmount() {
@@ -29,20 +40,40 @@ class HomePage extends Component {
     }
 
     handleBtnClick = (value, type) => {
-        this.setState({ popupVisibility: { [type]: value } });
+        const filters = {};
+        if (value) {
+            filters[type] = {};
+        } else {
+            delete filters[type];
+        }
+        this.setState({ popupVisibility: { [type]: value }, filters });
     };
 
-    popupValues = (value, type) => {
-        console.log('val', value, type);
+    popupValues = ({ item, value, checked, title }) => {
+        const { filters } = this.state;
 
-        this.setState({ filters: { [type]: value } });
+        const filtersClone = filters[title] ? cloneDeep(filters) : {};
+
+        if (!filtersClone[title]) filtersClone[title] = {};
+
+        if (item === 'StartDate') {
+            filtersClone[title][item] = value;
+        } else {
+            if (!filtersClone[title][item]) filtersClone[title][item] = [];
+            if (checked && !filtersClone[title][item].includes(value)) {
+                filtersClone[title][item].push(value);
+            } else if (!checked && filtersClone[title][item].includes(value)) {
+                filtersClone[title][item] = filtersClone[title][item].filter(filter => filter !== value);
+            }
+        }
+
+        this.setState({ filters: filtersClone });
     };
 
     renderFilterBtns = () => {
         const { popupVisibility, filters } = this.state;
         if (this.filterParser) {
             const filtersAvailable = this.filterParser.getReactFilters();
-
             return (
                 <div className={styles.btnFilterWrapper}>
                     {filtersAvailable.map(filter => (
@@ -69,27 +100,23 @@ class HomePage extends Component {
     };
 
     renderWorkOrders = () => {
-        const { allWorkOrders } = this.state;
+        const { filteredWorkOrders } = this.state;
 
-        return (
-            allWorkOrders &&
-            allWorkOrders.map(workOrder => (
-                <WorkOrderCard
-                    key={workOrder.Id}
-                    name={workOrder.Name}
-                    type={workOrder.Type}
-                    status={workOrder.Status}
-                    endDate={workOrder.EndDate}
-                    startDate={workOrder.StartDate}
-                    description={workOrder.Description}
-                    color={workOrder.Color}
-                />
-            ))
-        );
+        return filteredWorkOrders.map(workOrder => (
+            <WorkOrderCard
+                key={workOrder.Id}
+                name={workOrder.Name}
+                type={workOrder.Type}
+                status={workOrder.Status}
+                endDate={workOrder.EndDate}
+                startDate={workOrder.StartDate}
+                description={workOrder.Description}
+                color={workOrder.Color}
+            />
+        ));
     };
 
     render() {
-        console.log('filters', this.state.filters);
         return (
             <div>
                 {this.renderFilterBtns()}

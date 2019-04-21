@@ -48,5 +48,15 @@
         "EndDate": "22-04-2016 14:00:00",
         "Color": "Blue",
         "Description": "Install new KoelKast SF-123"
+    },
+    {
+        "Id": "uniqwo42",
+        "Name": "WO-0006",
+        "Status": "Open",
+        "Type": "Maintenance",
+        "StartDate": "22-04-2019 14:00:00",
+        "EndDate": "22-04-2016 15:00:00",
+        "Color": "Green",
+        "Description": "Check freon on split-system"
     }
 ]

@@ -1,35 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/material_green.css';
 
 import Checkbox from '../Checkbox';
 import styles from './styles.scss';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'flatpickr/dist/themes/material_green.css';
+
 const Popup = props => {
-    const { activeFilters = {}, popupValues, title, userInput } = props;
+    const { activeFilters, popupValues, title, userInput } = props;
 
     const handleCheckbox = (e, item) => {
         const {
             target: { value, checked },
         } = e;
 
-        console.log('active', value);
-
-        let values = activeFilters ? activeFilters[item] : [];
-        if (!values) values = [];
-        if (checked && !values.includes(value)) values.push(value);
-        if (!checked && values.includes(value)) values = values.filter(option => option !== value);
-
-        const newChecked = { ...activeFilters, [item]: values };
-
-        popupValues && popupValues(newChecked, title);
+        popupValues({ item, value, checked, title });
     };
 
     const handleDatePickr = (date, item) => {
-        const newChecked = { ...activeFilters, [item]: date };
-
-        popupValues && popupValues(newChecked, title);
+        popupValues({ item, value: date, title });
     };
 
     return (
@@ -70,7 +61,7 @@ const Popup = props => {
 
 Popup.propTypes = {
     activeFilters: PropTypes.object,
-    popupValues: PropTypes.func,
+    popupValues: PropTypes.func.isRequired,
     title: PropTypes.string,
     userInput: PropTypes.array,
 };

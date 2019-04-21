@@ -1,16 +1,14 @@
 {
     "Filter1": { "Status": "Open" },
-    "Filter2": { "and": [{ "Status": "Open" }, { "Color": "Blue" }] },
-    "Filter3": { "and": [{ "Status": "Open" }, { "ask": "Type", "values": ["Installation", "Maintenance", "Malfunction"] }] },
+    "Filter2": { "$and": { "Status": "Open", "Color": "Blue" } },
+    "Filter3": {
+        "$and": { "Status": "Open", "Type": { "ask": true, "values": ["Installation", "Maintenance", "Malfunction"] } }
+    },
     "Filter4": {
-        "and": [
-            {
-                "or": [
-                    { "ask": "Status", "values": ["Open", "Closed", "In Progress", "New"] },
-                    { "ask": "Type", "values": ["Installation", "Maintenance", "Malfunction"] }
-                ]
-            },
-            { "ask": "StartDate" }
-        ]
+        "$or": {
+            "Status": { "ask": true, "values": ["Open", "Closed", "In Progress", "New"] },
+            "Type": { "ask": true, "values": ["Installation", "Maintenance", "Malfunction"] }
+        },
+        "$and": { "StartDate": { "ask": true } }
     }
 }
