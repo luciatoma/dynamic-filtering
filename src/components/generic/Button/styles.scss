@@ -10,7 +10,6 @@
     font-weight: 500;
     min-width: 135px;
     padding: 6px;
-    position: relative;
     width: fit-content;
 
     &:focus {
@@ -21,4 +20,10 @@
 :local(.active) {
     background: $blue;
     color: $white;
+}
+
+@media #{$tablet} {
+    :local(.button) {
+        width: 100%;
+    }
 }

@@ -4,10 +4,9 @@ import classNames from 'classnames';
 import styles from './styles.scss';
 
 const ButtonStyled = props => {
-    const { active, title } = props;
+    const { active, handleBtnClick, title } = props;
 
     const handleToggle = () => {
-        const { handleBtnClick } = props;
         handleBtnClick && handleBtnClick(!active, title);
     };
 
@@ -26,9 +25,9 @@ const ButtonStyled = props => {
 };
 
 ButtonStyled.propTypes = {
+    active: PropTypes.bool,
     handleBtnClick: PropTypes.func,
     title: PropTypes.string.isRequired,
-    active: PropTypes.bool,
 };
 
 export default ButtonStyled;

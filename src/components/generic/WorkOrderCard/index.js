@@ -52,7 +52,7 @@ const WorkOrderCard = props => {
                     <span className={styles.detailsSubtitle}>Contract</span>
                     <span>Full Service 24/7</span>
                 </div>
-                <div>
+                <div className={styles.detailsDescription}>
                     <span className={styles.detailsSubtitle}>Notification</span>
                     <span>solar panel does not work</span>
                     <span className={styles.detailsSubtitle}>Office remarks</span>

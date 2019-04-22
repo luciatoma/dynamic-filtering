@@ -82,3 +82,35 @@
         font-weight: 700;
     }
 }
+
+@media #{$mobile} {
+    :local(.header) {
+        flex-direction: column;
+
+        :local(.headerCol) {
+            font-size: 16px;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+
+        :local(.lastCol) {
+            flex-direction: column;
+            margin-bottom: 0;
+            width: 100%;
+
+            span:last-of-type {
+                margin: 5px 0 0 0;
+            }
+        }
+    }
+
+    :local(.details) {
+        div {
+            display: none;
+        }
+
+        :local(.detailsDescription) {
+            display: flex;
+        }
+    }
+}
