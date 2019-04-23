@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
+// Generic styled button
 const ButtonStyled = props => {
     const { active, handleBtnClick, title } = props;
 

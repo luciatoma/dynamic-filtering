@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders without crashing and matches snapshot 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  type="button"
+>
+  test
+</button>
+`;
+
+exports[`Checkbox renders without crashing and matches snapshot 1`] = `
+<label>
+  test
+  <input
+    type="checkbox"
+    value="test"
+  />
+  <span />
+</label>
+`;
+
+exports[`Popup renders without crashing and matches snapshot 1`] = `
+<div>
+  <div>
+    <span>
+      Select 
+      test
+    </span>
+    <div>
+      <label>
+        test
+        <input
+          defaultChecked={false}
+          onChange={[Function]}
+          type="checkbox"
+          value="test"
+        />
+        <span />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`WorkOrder renders without crashing and matches snapshot 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+  >
+    <span>
+      Invalid date
+       -
+       
+      Invalid date
+    </span>
+    <span>
+      test
+    </span>
+    <span
+      className="undefined"
+    >
+      <span>
+        Maintenance
+      </span>
+      <span>
+        Status: 
+        Open
+      </span>
+    </span>
+  </div>
+  <div>
+    <div>
+      <span>
+        Customer
+      </span>
+      <span>
+        Magna
+      </span>
+      <span>
+        Meijendel 26
+      </span>
+      <span>
+        1941CM Beverwijk
+      </span>
+    </div>
+    <div>
+      <span>
+        Installation
+      </span>
+      <span>
+        Suntech 245Wp-2151
+      </span>
+      <span>
+        Contract
+      </span>
+      <span>
+        Full Service 24/7
+      </span>
+    </div>
+    <div>
+      <span>
+        Notification
+      </span>
+      <span>
+        solar panel does not work
+      </span>
+      <span>
+        Office remarks
+      </span>
+      <span>
+        test
+      </span>
+    </div>
+  </div>
+</div>
+`;

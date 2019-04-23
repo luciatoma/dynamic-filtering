@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import cloneDeep from 'lodash/cloneDeep';
 
-import { getWorkOrders, getAvailableFilters } from '../../../services/api';
-import FilterParser from '../../../utils/filterParser';
-import styles from './styles.scss';
-import Button from '../../generic/Button';
-import Popup from '../../generic/Popup';
-import WorkOrderCard from '../../generic/WorkOrderCard';
+import { getWorkOrders, getAvailableFilters } from '../../../../../src/services/api';
+import FilterParser from '../../../../../src/utils/filterParser';
+import WorkOrderCard from '../../generic/WorkOrderCard/index';
+import ButtonStyled from '../../generic/Button/index';
+import Popup from '../../generic/Popup/index';
 
-class HomePage extends Component {
+class HomePage extends React.Component {
     state = {
         allWorkOrders: [],
         filters: {},
-        popupVisibility: {},
         filteredWorkOrders: [],
+        popupVisibility: {},
     };
-
-    // Flag to avoid setting the state after the unmount on unit testing. Setting it here instead of cdm
-    mounted = true;
 
     // Initialize the filter parser
     filterParser = new FilterParser(getAvailableFilters());
@@ -87,10 +84,10 @@ class HomePage extends Component {
         if (this.filterParser) {
             const filtersAvailable = this.filterParser.getReactFilters();
             return (
-                <div className={styles.btnFilterWrapper}>
+                <View>
                     {filtersAvailable.map(filter => (
-                        <div key={filter.title} className={styles.btnFilter}>
-                            <Button
+                        <View key={filter.title} style={styles.filterBtnWrapper}>
+                            <ButtonStyled
                                 active={popupVisibility[filter.title]}
                                 title={filter.title}
                                 handleBtnClick={this.handleBtnClick}
@@ -103,18 +100,17 @@ class HomePage extends Component {
                                     activeFilters={filters[filter.title]}
                                 />
                             )}
-                        </div>
+                        </View>
                     ))}
-                </div>
+                </View>
             );
         }
         return null;
     };
 
     // Function handling work order cards view and passing props
-    renderWorkOrders = () => {
+    renderWorkOrder = () => {
         const { filteredWorkOrders } = this.state;
-
         return filteredWorkOrders.map(workOrder => (
             <WorkOrderCard
                 key={workOrder.Id}
@@ -131,12 +127,25 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderFilterBtns()}
-                {this.renderWorkOrders()}
-            </div>
+            <ScrollView style={styles.homePageWrapper}>
+                <View>
+                    {this.renderFilterBtns()}
+                    {this.renderWorkOrder()}
+                </View>
+            </ScrollView>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    homePageWrapper: {
+        marginTop: 30,
+        marginBottom: 30,
+        width: '100%',
+    },
+    filterBtnWrapper: {
+        marginBottom: 10,
+    },
+});
 
 export default HomePage;

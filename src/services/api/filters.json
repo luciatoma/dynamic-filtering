@@ -1,10 +1,10 @@
 {
-    "Filter1": { "Status": "Open" },
-    "Filter2": { "$and": { "Status": "Open", "Color": "Blue" } },
-    "Filter3": {
+    "OpenWO": { "Status": "Open" },
+    "OpenAndBlueWO": { "$and": { "Status": "Open", "Color": "Blue" } },
+    "TypeWO": {
         "$and": { "Status": "Open", "Type": { "ask": true, "values": ["Installation", "Maintenance", "Malfunction"] } }
     },
-    "Filter4": {
+    "Multiple": {
         "$or": {
             "Status": { "ask": true, "values": ["Open", "Closed", "In Progress", "New"] },
             "Type": { "ask": true, "values": ["Installation", "Maintenance", "Malfunction"] }

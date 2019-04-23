@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import styles from './styles.scss';
 
+// Styled card which stores work order information
 const WorkOrderCard = props => {
     const { description, color, endDate, name, startDate, status, type } = props;
     return (

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing and matches snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <div>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Filter1
+        </button>
+      </div>
+      <div>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Filter2
+        </button>
+      </div>
+      <div>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Filter3
+        </button>
+      </div>
+      <div>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Filter4
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

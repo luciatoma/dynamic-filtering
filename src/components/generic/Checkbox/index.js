@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
+// Generic styled checkbox input
 const Checkbox = props => {
     const { value, onChange, title, checked } = props;
     return (

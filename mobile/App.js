@@ -1,16 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Home from './src/components/pages/HomePage';
 
-export default class App extends React.Component {
-    render() {
-        console.log('asd');
-        return (
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-            </View>
-        );
-    }
-}
+// Main mobile component
+const App = () => (
+    <View style={styles.container}>
+        <Home />
+    </View>
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -18,5 +15,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: '100%',
     },
 });
+
+export default App;

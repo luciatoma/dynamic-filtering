@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Flatpickr from 'react-flatpickr';
+import moment from 'moment';
 
 import Checkbox from '../Checkbox';
 import styles from './styles.scss';
@@ -8,6 +9,7 @@ import styles from './styles.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'flatpickr/dist/themes/material_green.css';
 
+// Styled popup component for filter buttons that require input
 const Popup = props => {
     const { activeFilters, popupValues, title, userInput } = props;
 
@@ -20,7 +22,8 @@ const Popup = props => {
     };
 
     const handleDatePickr = (date, item) => {
-        popupValues({ item, value: date, title });
+        const value = moment(date[0]).format('DD-MM-YYYY');
+        popupValues({ item, value, title });
     };
 
     return (
@@ -49,7 +52,8 @@ const Popup = props => {
                     <div key={item.filter}>
                         <span className={styles.filterTitle}>Select {item.filter}</span>
                         <Flatpickr
-                            value={activeFilters[item.filter] || new Date()}
+                            options={{ dateFormat: 'd-m-Y' }}
+                            value={activeFilters[item.filter] || moment().format('DD-MM-YYYY')}
                             onChange={date => handleDatePickr(date, item.filter)}
                         />
                     </div>
@@ -63,7 +67,7 @@ Popup.propTypes = {
     activeFilters: PropTypes.object,
     popupValues: PropTypes.func.isRequired,
     title: PropTypes.string,
-    userInput: PropTypes.array,
+    userInput: PropTypes.array.isRequired,
 };
 
 export default Popup;
