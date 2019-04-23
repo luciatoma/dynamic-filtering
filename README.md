@@ -14,7 +14,7 @@
 -   cd mobile
 -   yarn
 -   yarn start
--   The app sould open a new browser in the default browser.
+-   The expo UI will open in a new tab in the default browser.
 
 ### Running the tests
 
