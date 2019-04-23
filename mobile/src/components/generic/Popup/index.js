@@ -46,6 +46,8 @@ const Popup = props => {
                             date={activeFilters[item.filter] || new Date()}
                             onDateChange={date => handleDatePickr(date, item.filter)}
                             format="DD-MM-YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
                             customStyles={{
                                 dateInput: {
                                     backgroundColor: colors.white,
